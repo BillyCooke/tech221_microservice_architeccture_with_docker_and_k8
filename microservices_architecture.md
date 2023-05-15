@@ -20,9 +20,9 @@ They enable a business to deliver larger, complex applications rapdily and more 
 * Sustainable
 * All these make a business more competitive
 
-## Difference between 2/Ntier architecture and microservcies architecture
+## Difference between 2/Ntier architecture and microservices architecture
 * Ntier is usually deployed and updated altogether whereas microservcies are independant of each other and loosely coupled
-*
+* If one part fails in microservices then the other microservcies should still be able to run as they are independant. Whereas if the kep iter in Ntier faisl then they will all fail
 
 ## What is Docker?
 
@@ -38,3 +38,4 @@ Docker is an open platform designed to help developers build, deploy and run app
 * Virtualisation is fully isolated OS and VM instance whereas containerisation isolated the host OS machine and containers from each other. So potentially greater security for containerisation.
 * Virtualisation can host multiple operating systems but containerisation runs all contianers on one OS
 * Virtualisation uses a virtual hard disk for each VM for storage but containerisation uses the local hard disk
+* C ontainerisation does not require as much CPU, memory and storage
