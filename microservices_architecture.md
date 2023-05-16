@@ -47,9 +47,10 @@ Docker is an open platform designed to help developers build, deploy and run app
 
 ## How to run an image
 1. Use ```docker run -d -p 80:80 nginx``` to install nginx image
--d is the dahsboard
--p is the port
+* -d is the dahsboard
+* -p is the port
 2. Go to a browser and enter ```localhost``` to see the nginx page
+3. Commands that we can use on images
 * ```docker ps``` to show all the containers running
 * ```docker stop 'name or ID of the image'``` to stop the image
 * ```docker start 'name or ID of the image'``` to start the image
@@ -58,21 +59,23 @@ Docker is an open platform designed to help developers build, deploy and run app
 
 
 ## How to change Nginx HTML
-1. Firstly use ```docker ps``` to find the contaienr ID for Nginx
-2. Run ```docker exec -it 'container ID' sh``` to go to container location
-3. We can now use linux commands to naviagte to the nginx location
-4. Run these four commands to get to the HTML file location 
+1. Firstly use ```docker ps``` to find the container ID for Nginx
+2. Create an alias for docker using ```alias docker="winpty docker"```
+3. Run ```docker exec -it 'container ID' sh``` to go to container location
+4. We can now use linux commands to naviagte to the nginx location
+5. Run these four commands to get to the HTML file location 
 * ```cd /usr```
 * ```cd share```
 * ```cd nginx```
 * ```cd html```
-5. You can use ```pwd``` to make sure you are in the correct location after each command
-6. After all four you should be at ```/usr/share/nginx/html```
-7. Use ```apt update -y```
-8. Then use ```apt install sudo``` to install sudo
-9. Run ```sudo apt install nano``` to install nano
-10. Then use ```sudo nano index.html``` to go into the html file
-11. We can then change what the nginx page shows. Under the header we can change it to ```Welcome to the dream team of DevOps!``` and then when we go to our browser and run local host we will see the change.
-12. This is what you should now see
+6. You can use ```pwd``` to make sure you are in the correct location after each command
+7. After all four you should be at ```/usr/share/nginx/html```
+8. Use ```apt update -y```
+9. Then use ```apt install sudo``` to install sudo
+10. Run ```sudo apt install nano``` to install nano
+11. Then use ```sudo nano index.html``` to go into the html file
+12. We can then change what the nginx page shows. Under the header we can change it to ```Welcome to the dream team of DevOps!```
+13. Then when we go to our browser and run ```localhost``` we will see the change.
+14. This is what you should now see
 
 ![Alt text](Nginx.png)
