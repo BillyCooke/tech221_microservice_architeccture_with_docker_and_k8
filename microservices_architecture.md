@@ -79,3 +79,103 @@ Docker is an open platform designed to help developers build, deploy and run app
 14. This is what you should now see
 
 ![Alt text](Nginx.png)
+
+## Adding our Sparta profile and pushing to DockerHub
+1. Create a new file using ```nano index.html``` in a location, I used my sparta folder
+2. In this file we want to configure how we want our profile to be shown
+3. I entered in the below for a basic example
+```
+<!DOCTYPE html>
+<html>
+<head>
+<title>Billy Cooke's profile</title>
+</head>
+<body>
+<h1>Welcome to my profile</h1>
+<h2>Overview</h2>
+<p>Billy has worked as a Medical Secretary and has decided to become a DevOps Engineer. He has chosen the DevOps path because of the keen interest he has developed in the recent courses he has completed and he believes this is where he can grow and flourish. One of the courses was in AWS essentials where he first learnt about a more adaptable way of working and a massively diverse array of tools that are available to be used. This then created a drive for working in a more adaptive enviroment so he then enrolled onto an Agile Fundmentals course where he discovered a passion for the Agile mindset. From this he then used a framework from this course called a Kanban board to use in his previous role to help improve efficiency and make the work more transparent. In his spare time he enjoys sports including football where he supports Manchester United and watching the England national rugby team. Billy is keen to work with various teams throughout the business and learning about how we can best combine to provide a better product for the customer.</p>
+<h2>Work experience</h2>
+<p>MAY 2021 - MARCH 2023 WYE VALLEY NHS TRUST - MEDICAL SECRETARY Resposible for the adminstration for the lead consultant, diary management, prepared and processed audio typing and accountable for all ingoing and outgoing calls. NOVEMBER 2016 - FEBRUARY 2017 CURRY'S - SALES ASSISTANT Responsible for the updating of products, providing key information to suppliers and customers, testing and promoting new products and continously developed knowledge on the current isurance policies. I also had regular sales targets to hit throughout the day.</p>
+<h2>Education</h2>
+<p>SEPTEMBER 2015 - JUNE 2017 COLLEGE: A LEVELS BUSINESS STUDIES - C ECONOMICS - D STATISTICS - D</p>
+<p>New change</p>
+</html>
+```
+4. Now we need to copy over the file from local to the container using docker ```cp index.html 1ef648a79620:/usr/share/nginx/html```. Make sure you are in the same location as the index.html file otherwsie you will need to rpovide the absolute path
+5. Replace ```1ef648a79620``` with your container ID
+6. Go back to your ```localhost``` page and refresh it to see your profile
+7. Now use ```docker commit <container-id> billy5549/profile```
+8. Make sure you are logged in by using ```docker login``` then use the username and password for your DockerHub account
+9. Then use ```docker tag billy/profile billy5549/tech221-nginx:v1``
+10. Lastly push your image using ```docker push billy5549/tech221-nginx:v1```
+
+## Automating the process
+1. We need to create a Dockerfile using ```nano Dockerfile``` in the same location
+2. Add the below into it
+```
+# base image Nginx
+FROM nginx
+
+# who is the owner/creater
+LABEL MAINTAINER=BILLY@SPARTA
+
+# copy index.html to usr/share/nginx/html
+COPY index.html /usr/share/nginx/html/
+
+# port 80
+EXPOSE 80
+
+# execute command run
+CMD ["nginx", "-g", "daemon off;"]
+
+# docker build
+# docker images to confirm the name
+# docker run
+# docker ps as well as localhost
+```
+3. Use ```docker build -t billy5549/tech221-nginx:v1``` to build the image
+4. Then use ```docker run -d -p 80:80 billy5549/tech221-nginx:v1``` to run the container
+5. Then go back to your browser and refresh ```localhost``` to see your profile
+
+## launching our Sparta app through an image
+1. We first need to copy over the sparta app fodler to where we have our dockerfile using ```cp -r app C:/Users/billy/Sparta```
+2. Then open Dockerfile using ```nano Dockerfile``` and replace what is in there with the below
+```
+# base image node
+FROM node:16
+
+ 
+
+# who is the owner/creator
+LABEL MAINTAINER=BILLY@SPARTA
+
+ 
+
+# copy the app folder
+COPY app/ .
+
+ 
+
+# port 3000
+Expose 3000
+
+ 
+
+# install the app
+RUN npm install
+
+ 
+
+# execute command run
+CMD ["node", "app.js"]
+
+ 
+
+# docker build
+# docker images to confirm the name
+# docker run
+# docker ps as well as localhost
+```
+3. Build the image using ```docker build -t billy5549/tech221-app:v1 .```
+4. Then run the container using ```docker run -d -p 80:3000 billy5549/tech221-app:v1```
+5. Go into a browser and use ```localhost``` and you should now see the Sparta app
