@@ -137,7 +137,7 @@ CMD ["nginx", "-g", "daemon off;"]
 4. Then use ```docker run -d -p 80:80 billy5549/tech221-nginx:v1``` to run the container
 5. Then go back to your browser and refresh ```localhost``` to see your profile
 
-## launching our Sparta app through an image
+## Launching our Sparta app through an image
 1. We first need to copy over the sparta app fodler to where we have our dockerfile using ```cp -r app C:/Users/billy/Sparta```
 2. Then open Dockerfile using ```nano Dockerfile``` and replace what is in there with the below
 ```
