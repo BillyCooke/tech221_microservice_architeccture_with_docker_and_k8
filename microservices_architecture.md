@@ -22,7 +22,7 @@ They enable a business to deliver larger, complex applications rapdily and more 
 
 ## Difference between 2/Ntier architecture and microservices architecture
 * Ntier is usually deployed and updated altogether whereas microservcies are independant of each other and loosely coupled
-* If one part fails in microservices then the other microservcies should still be able to run as they are independant. Whereas if the kep iter in Ntier faisl then they will all fail
+* If one part fails in microservices then the other microservcies should still be able to run as they are independant. Whereas if the key tier in Ntier fails then they will all fail
 
 ## What is Docker?
 
