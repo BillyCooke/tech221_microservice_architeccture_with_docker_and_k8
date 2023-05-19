@@ -20,6 +20,11 @@ They enable a business to deliver larger, complex applications rapdily and more 
 * Sustainable
 * All these make a business more competitive
 
+## When not to use microservices
+* When the project is small and does not need to be broke up into smaller services
+* Can become overcomplicated in a small projects
+* It is expensive as there are more resoruces and more maintainence
+
 ## Difference between 2/Ntier architecture and microservices architecture
 * Ntier is usually deployed and updated altogether whereas microservcies are independant of each other and loosely coupled
 * If one part fails in microservices then the other microservcies should still be able to run as they are independant. Whereas if the key tier in Ntier fails then they will all fail
